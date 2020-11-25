@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" width="25%">
-    <HelloWorld msg="Hello Vue in CodeSandbox!"/>
+    <RapidFormPlayer form-definition-id="request-product" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import RapidFormPlayer from './components/RapidFormPlayer'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    HelloWorld
+    RapidFormPlayer
   }
 };
 </script>
