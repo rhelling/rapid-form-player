@@ -4,25 +4,25 @@
     <ul>
       <li v-for="(step, stepIndex) in steps" :key="stepIndex">{{step.name}}</li>
     </ul>
-    <ul>
-      <li v-for="(fieldSet, fieldSetIndex) in activeFieldSets" :key="fieldSetIndex"> 
-        {{ fieldSet.key }}
+    <template v-for="(fieldSet, fieldSetIndex) in activeFieldSets">
+      <RapidFormFieldSet :key="fieldSetIndex"> 
         <template v-for="(field, fieldIndex) in getFields(fieldSet.key)" >
           <RapidFormField :field-definition="field" :key="fieldSetIndex + '_' +fieldIndex" />
         </template>
-      </li>
-    </ul>
+      </RapidFormFieldSet>
+    </template>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { RapidFormField } from './RapidFormComponents/RapidFormField'
+import { RapidFormField, RapidFormFieldSet } from './RapidFormComponents'
 
 export default {
   name: 'RapidFormPlayer',
   components: {
-    RapidFormField
+    RapidFormField,
+    RapidFormFieldSet
   },
   props: {
     formDefinitionId: {
@@ -31,10 +31,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchFormDefinition'])
+    ...mapActions([
+      'fetchFormDefinition'
+    ])
   },
   computed: {
-    ...mapGetters(['name', 'formState', 'steps', 'activeFieldSets', 'getFields'])
+    ...mapGetters([
+      'name',
+      'formState', 
+      'steps',
+      'activeFieldSets',
+      'getFields'
+    ])
   },
   beforeMount() {
     this.fetchFormDefinition({formDefinitionId: this.formDefinitionId})

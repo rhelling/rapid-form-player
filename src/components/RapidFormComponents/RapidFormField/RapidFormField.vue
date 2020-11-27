@@ -1,12 +1,13 @@
 <template>
     <fieldset>
-      <label>{{ fieldDefinition.key }}</label>
-      <input @input="updateFieldValue" :value="fieldValue" />
+      <label>{{ fieldDefinition.label }}</label>
+      <component :is="componentType" @input="updateFieldValue" :value="fieldValue" />
     </fieldset>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import { componentTypeMap } from './ComponentTypeMap'
 
 export default {
   name: 'RapidSubForm',
@@ -20,6 +21,9 @@ export default {
     ...mapGetters(['getFieldValue']),
     fieldValue() {
       return this.getFieldValue(this.fieldDefinition.key)
+    },
+    componentType() {
+      return componentTypeMap(this.fieldDefinition.type)
     }
   },
   methods: {
