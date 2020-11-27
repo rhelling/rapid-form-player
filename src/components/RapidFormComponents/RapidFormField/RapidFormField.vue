@@ -16,11 +16,6 @@ export default {
       type: Object
     }
   },
-  data() {
-    return {
-      formFieldValue: undefined
-    }
-  },
   computed: {
     ...mapGetters(['getFieldValue']),
     fieldValue() {
