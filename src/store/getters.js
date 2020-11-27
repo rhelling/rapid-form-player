@@ -17,6 +17,9 @@ export const getters = {
   getFields(state) {
     return (fieldSet) => state.fields.filter((field) => field.fieldSet === fieldSet)
   },
+  getFieldValue(state) {
+    return (fieldKey) => state.formData[fieldKey]
+  },
   formState(state) {
     return state.formState
   }

@@ -5,5 +5,5 @@ export const state = {
   fields: undefined,
   dictionary: undefined,
   formState: undefined,
-  formData: undefined
+  formData: {}
 }

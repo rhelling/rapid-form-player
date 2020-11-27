@@ -1,5 +1,5 @@
 import { getFormDefinition } from '../services/formservice'
-import { SET_FORM_DEFINITION } from './mutation-types'
+import { SET_FORM_DEFINITION, SET_FORM_FIELD_VALUE } from './mutation-types'
 
 export const actions = {
   fetchFormDefinition({ commit }, { formDefinitionId }) {
@@ -7,6 +7,6 @@ export const actions = {
     commit(SET_FORM_DEFINITION, formDefinition)
   },
   updateField({ commit }, { fieldKey, value }) {
-    console.info('updateField: ', fieldKey, value)
+    commit(SET_FORM_FIELD_VALUE, { fieldKey, value })
   }
 }

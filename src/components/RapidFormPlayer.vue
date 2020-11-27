@@ -7,11 +7,9 @@
     <ul>
       <li v-for="(fieldSet, fieldSetIndex) in activeFieldSets" :key="fieldSetIndex"> 
         {{ fieldSet.key }}
-        <ul>
-          <li v-for="(field, fieldIndex) in getFields(fieldSet.key)" :key="fieldSetIndex + '_' +fieldIndex">
-            <RapidFormField :field-definition="field" />
-          </li>
-        </ul>
+        <template v-for="(field, fieldIndex) in getFields(fieldSet.key)" >
+          <RapidFormField :field-definition="field" :key="fieldSetIndex + '_' +fieldIndex" />
+        </template>
       </li>
     </ul>
   </div>

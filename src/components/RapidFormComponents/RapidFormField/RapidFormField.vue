@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <input @input="updateFieldValue" :value="formFieldValue" />
-   {{ fieldDefinition.key }} 
-  </div>
+    <fieldset>
+      <label>{{ fieldDefinition.key }}</label>
+      <input @input="updateFieldValue" :value="fieldValue" />
+    </fieldset>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'RapidSubForm',
@@ -21,10 +21,16 @@ export default {
       formFieldValue: undefined
     }
   },
+  computed: {
+    ...mapGetters(['getFieldValue']),
+    fieldValue() {
+      return this.getFieldValue(this.fieldDefinition.key)
+    }
+  },
   methods: {
     ...mapActions(['updateField']),
-    updateFieldValue(value) {
-      this.updateField({fieldKey: this.fieldDefinition.key, value})
+    updateFieldValue(event) {
+      this.updateField({fieldKey: this.fieldDefinition.key, value: event.target.value})
     }
   }
 }
