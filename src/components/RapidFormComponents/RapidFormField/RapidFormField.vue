@@ -1,7 +1,7 @@
 <template>
     <fieldset>
       <label>{{ fieldDefinition.label }}</label>
-      <component :is="componentType" @input="updateFieldValue" :value="fieldValue" />
+      <component :is="componentType" v-model="fieldValue" />
     </fieldset>
 </template>
 
@@ -19,8 +19,14 @@ export default {
   },
   computed: {
     ...mapGetters(['getFieldValue']),
-    fieldValue() {
-      return this.getFieldValue(this.fieldDefinition.key)
+    fieldValue: {
+      get() {
+        return this.getFieldValue(this.fieldDefinition.key)
+      },
+      set(event) {
+        const value = this.getValueFromEvent(event)
+        this.updateField({value ,fieldKey: this.fieldDefinition.key})
+      }
     },
     componentType() {
       return componentTypeMap(this.fieldDefinition.type)
@@ -28,8 +34,8 @@ export default {
   },
   methods: {
     ...mapActions(['updateField']),
-    updateFieldValue(event) {
-      this.updateField({fieldKey: this.fieldDefinition.key, value: event.target.value})
+    getValueFromEvent(event) {
+      return event.target.value || event.target.checked
     }
   }
 }

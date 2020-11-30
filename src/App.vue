@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <RapidFormPlayer form-definition-id="request-product" />
+    <RapidFormPlayer form-definition-id="request-product" component-map="componentMap" />
   </div>
 </template>
 
@@ -11,6 +11,13 @@ export default {
   name: 'App',
   components: {
     RapidFormPlayer
+  },
+  computed: {
+    componentMap() {
+      return {
+        
+      }
+    }
   }
 };
 </script>

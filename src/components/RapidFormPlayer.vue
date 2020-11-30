@@ -1,9 +1,7 @@
 <template>
   <div> 
     <h1>{{ name }}</h1>
-    <ul>
-      <li v-for="(step, stepIndex) in steps" :key="stepIndex">{{step.name}}</li>
-    </ul>
+    <RapidFormStepIndication :steps="steps" />
     <template v-for="(fieldSet, fieldSetIndex) in activeFieldSets">
       <RapidFormFieldSet :key="fieldSetIndex"> 
         <template v-for="(field, fieldIndex) in getFields(fieldSet.key)" >
@@ -16,13 +14,14 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { RapidFormField, RapidFormFieldSet } from './RapidFormComponents'
+import { RapidFormField, RapidFormFieldSet, RapidFormStepIndication } from './RapidFormComponents'
 
 export default {
   name: 'RapidFormPlayer',
   components: {
     RapidFormField,
-    RapidFormFieldSet
+    RapidFormFieldSet,
+    RapidFormStepIndication
   },
   props: {
     formDefinitionId: {
