@@ -1,9 +1,9 @@
 <template>
-  <div> 
+  <div>
     <h1>{{ name }}</h1>
     <RapidFormStepIndication :steps="steps" />
     <template v-for="(fieldSet, fieldSetIndex) in activeFieldSets">
-      <RapidFormFieldSet :key="fieldSetIndex"> 
+      <RapidFormFieldSet :key="fieldSetIndex">
         <template v-for="(field, fieldIndex) in getFields(fieldSet.key)" >
           <RapidFormField :field-definition="field" :key="fieldSetIndex + '_' +fieldIndex" />
         </template>
@@ -37,7 +37,7 @@ export default {
   computed: {
     ...mapGetters([
       'name',
-      'formState', 
+      'formState',
       'steps',
       'activeFieldSets',
       'getFields'

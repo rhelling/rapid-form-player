@@ -1,4 +1,4 @@
-export function getFormDefinition(formName) {
+export function getFormDefinition() {
   return {
     name: 'Autoverzekering',
     dictionary: {

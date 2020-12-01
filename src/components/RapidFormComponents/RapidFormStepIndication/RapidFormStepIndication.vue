@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'RapidFormStepIndiction',
+  name: 'RapidFormStepIndication',
   props: {
     steps: {
       required: true,

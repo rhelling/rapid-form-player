@@ -1,7 +1,9 @@
 <template>
     <fieldset>
       <label>{{ fieldDefinition.label }}</label>
-      <component :is="componentType" v-model="fieldValue" />
+      <!-- remark:  v-model bindings do not work with dynamic components and native html inputs -->
+      <!-- <component :is="componentType" v-model="fieldValue" /> --->
+      <input v-model="fieldValue" />
     </fieldset>
 </template>
 
@@ -10,7 +12,7 @@ import { mapActions, mapGetters } from 'vuex'
 import { componentTypeMap } from './ComponentTypeMap'
 
 export default {
-  name: 'RapidSubForm',
+  name: 'RapidSubFormField',
   props: {
     fieldDefinition: {
       required: true,
@@ -23,8 +25,7 @@ export default {
       get() {
         return this.getFieldValue(this.fieldDefinition.key)
       },
-      set(event) {
-        const value = this.getValueFromEvent(event)
+      set(value) {
         this.updateField({value ,fieldKey: this.fieldDefinition.key})
       }
     },
@@ -33,10 +34,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['updateField']),
-    getValueFromEvent(event) {
-      return event.target.value || event.target.checked
-    }
+    ...mapActions(['updateField'])
   }
 }
 </script>
